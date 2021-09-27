@@ -6,7 +6,6 @@ $(document).ready(function () {
     var currentHour = moment().format("HH");
 
     $(".saveBtn").click(function(){
-        console.log("save button clicked");
         var siblings = $(this).siblings();
         var textarea = siblings[1];
         var parent = $(this).parent();
@@ -14,10 +13,13 @@ $(document).ready(function () {
        localStorage.setItem( getId.id , textarea.value)
 
     }) 
-    localStorage.setItem('name','Jason');
+     
 
     $(".time-div").each(function () {
+        console.log($(this).attr("id"));
         var hour = $(this).attr("id").split("-")[1];
+        
+        $("#hour-" + hour + " .time-block").val(localStorage.getItem("hour-" + hour));
 
         if (currentHour === hour) {
             $(this).addClass("present"); {
@@ -32,7 +34,9 @@ $(document).ready(function () {
             $(this).addClass("past");
         }
     })
+
 });
+
 
 
 
